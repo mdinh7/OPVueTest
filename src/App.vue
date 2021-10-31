@@ -2,11 +2,34 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <ul id="userList">
-      <li v-for="item in data" :key="item.name">
-         {{item.name}}
-      </li>
-    </ul>
+    <table>
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Username </th>
+        <th> email </th>
+        <th> Address </th>
+        <th> Phone Number </th>
+        <th> Website </th>
+        <th> Company Name </th>
+        <th> Company Product </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in data" :key="item">
+       <td>{{item.id}}</td> 
+       <td>{{item.name}}</td>
+       <td>{{item.username}}</td>  
+       <td>{{item.email}}</td>  
+       <td>{{item.address.street}} {{item.address.suite}} {{item.address.city}} {{item.address.zipcode}}</td>  
+       <td>{{item.phone}}</td>  
+       <td>{{item.website}}</td>  
+       <td>{{item.company.name}}</td>  
+       <td>{{item.company.bs}}</td>  
+    </tr>
+    </tbody>
+    </table>
   </div>
 </template>
 
