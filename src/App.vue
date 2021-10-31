@@ -17,12 +17,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in data" :key="item">
+      <tr v-for="item in searchResults" :key="item">
        <td>{{item.id}}</td> 
        <td>{{item.name}}</td>
        <td>{{item.username}}</td>  
        <td>{{item.email}}</td>  
-       <td>{{item.address.street}} {{item.address.suite}} {{item.address.city}} {{item.address.zipcode}}</td>  
+       <td>{{item.address.street}}, {{item.address.suite}}, {{item.address.city}} {{item.address.zipcode}}</td>  
        <td>{{item.phone}}</td>  
        <td>{{item.website}}</td>  
        <td>{{item.company.name}}</td>  
@@ -30,6 +30,10 @@
     </tr>
     </tbody>
     </table>
+
+    <input type="text"
+         placeholder="Search Name"
+         v-model="searchName" />
   </div>
 </template>
 
@@ -40,6 +44,7 @@ export default {
   name: 'App',
   data() {
     return{
+      searchName:'',
       data:{}
     }
   },
@@ -60,6 +65,20 @@ export default {
 
       let testRequest = await fetch(userRequest);
       this.data = await testRequest.json();
+    }
+  },
+
+  computed:{
+    searchResults(){
+      if(this.searchName){
+        return this.data.filter(info => {
+        let nameField = info.name.toString().toLowerCase();
+        let findName = this.searchName.toLowerCase();
+        return nameField.includes(findName);
+      })
+      }else{
+        return this.data;
+      }
     }
   }
 }
