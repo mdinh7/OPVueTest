@@ -29,9 +29,7 @@
     </tbody>
     </table>
 
-    <input type="text"
-         placeholder="Search Name"
-         v-model="searchName" />
+    <input type="text" placeholder="Search Name" v-model="searchName" />
   </div>
 </template>
 
